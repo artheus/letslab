@@ -1,4 +1,5 @@
 package se.artheus.letslab.core;
 
-public class ComponentController {
+public interface ComponentController {
+    void tick();
 }

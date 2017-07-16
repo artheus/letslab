@@ -1,8 +1,12 @@
 package se.artheus.letslab.core.component;
 
+import se.artheus.letslab.core.Charge;
 import se.artheus.letslab.core.Component;
 import se.artheus.letslab.core.ComponentController;
 import se.artheus.letslab.core.Terminal;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Resistor implements Component {
 
@@ -32,6 +36,22 @@ public class Resistor implements Component {
 
     @Override
     public ComponentController getController() {
-        return null;
+        return () -> {
+            if(getTerminal1().getCharge().hasCharge()) {
+                getTerminal2().setCharge(
+                        new Charge(
+                            getTerminal1().getCharge().getVoltage(),
+                            getTerminal1().getCharge().getResistance() + getResistance()
+                        )
+                );
+            } else {
+                getTerminal1().setCharge(
+                        new Charge(
+                                getTerminal2().getCharge().getVoltage(),
+                                getTerminal2().getCharge().getResistance() + getResistance()
+                        )
+                );
+            }
+        };
     }
 }

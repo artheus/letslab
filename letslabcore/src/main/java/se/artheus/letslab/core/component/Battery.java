@@ -5,21 +5,24 @@ import se.artheus.letslab.core.PolarComponent;
 
 public class Battery extends PolarComponent {
     private Double voltage;
-    private Double dischargeRate;
+    private Double internalResistance;
 
-    public Battery(Double voltage, Double dischargeRate) {
+    public Battery(Double voltage, Double internalResistance) {
         super();
 
         this.voltage = voltage;
-        this.dischargeRate = dischargeRate;
+        this.internalResistance = internalResistance;
+
+        this.getAnode().getCharge().setVoltage(voltage);
+        this.getAnode().getCharge().setResistance(internalResistance);
     }
 
     public Double getVoltage() {
         return voltage;
     }
 
-    public Double getDischargeRate() {
-        return dischargeRate;
+    public Double getInternalResistance() {
+        return internalResistance;
     }
 
     @Override

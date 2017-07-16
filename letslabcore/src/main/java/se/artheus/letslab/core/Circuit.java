@@ -1,12 +1,13 @@
 package se.artheus.letslab.core;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Circuit implements Runnable {
 
-    private List<Component> componentList;
-    private List<Cable> cableList;
+    private List<Component> componentList = new ArrayList<>();
+    private List<Cable> cableList = new ArrayList<>();
 
     public List<Component> getComponentList() {
         return componentList;
@@ -17,12 +18,14 @@ public class Circuit implements Runnable {
     }
 
     public void addComponent(Component component) {
-        if(this.componentList == null) this.setComponentList(new ArrayList<Component>());
-
         this.componentList.add(component);
     }
 
-    public void connectTerminals(Terminal... terminals) {
+    public void addComponents(Component... components) {
+        this.componentList.addAll(Arrays.asList(components));
+    }
+
+    public Cable connectTerminals(Terminal... terminals) {
         Cable cable = new Cable();
 
         for (Terminal t : terminals) {
@@ -30,6 +33,7 @@ public class Circuit implements Runnable {
         }
 
         cableList.add(cable);
+        return cable;
     }
 
     @Override

@@ -9,9 +9,9 @@
         <module name="letslabcore" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="letslab" target="1.5" />
-      <module name="letslabcore" target="1.5" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="letslab" target="1.8" />
+      <module name="letslabcore" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
